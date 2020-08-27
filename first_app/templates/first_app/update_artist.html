@@ -1,0 +1,13 @@
+{% extends 'first_app/base.html' %}
+
+{% block body_block %}
+    <h3 style="padding: 20px 0px">Update Artist</h3>
+    {% if success %}
+        <div class="alert alert-success">{{ success }}</div>
+    {% endif %}
+    <form action="" method="POST">
+        {{ update_form.as_p }}
+        {% csrf_token %}
+        <input class="btn btn-md btn-success" type="Submit" name="Submit" value="Update">
+    </form>
+{% endblock %}

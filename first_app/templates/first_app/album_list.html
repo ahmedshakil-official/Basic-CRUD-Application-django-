@@ -1,0 +1,27 @@
+{% extends "first_app/base.html" %}
+
+{% block body_block %}
+    <h3 style="padding-top: 50px;">Artist Name: {{ artist_info.first_name }} {{ artist_info.last_name }}</h3>
+    <h3>Role: {{ artist_info.instrument }}</h3><br><br>
+    <h3>Artist Rating: {{ artist_rating.rating__avg }}</h3>
+    <a href="{% url 'first_app:update_artist' artist_id=artist_info.id %}" class="btn btn-md btn-info">Update</a>
+    <h4 class="text-center">{{ title }} </h4>
+
+    <table class="table table-bordered">
+        <tr>
+            <th>Album Name</th>
+            <th>Release Date</th>
+            <th>Rating</th>
+            <th class="text-center">Edit</th>
+        </tr>
+        {% for album in all_album %}
+            <tr>
+                <td>{{ album.name }}</td>
+                <td>{{ album.release_date }}</td>
+                <td>{{ album.rating }}</td>
+                <td class="d-flex justify-content-between"><a class="btn btn-md btn-info" href="{% url 'first_app:update_album' album_id=album.id %}">Update</a> <a href="{% url 'first_app:delete_album' album_id=album.id %}" class="btn btn-md btn-danger" onclick="return confirm('Are you sure want to delete this Album?')">Delete</a></td>
+            </tr>
+        {% endfor %}
+    </table>
+    <a href="{% url 'first_app:delete_artist' artist_id=artist_info.id %}" class="btn btn-md btn-danger" onclick="return confirm('Are you sure want to delete this Album?')">Delete Artist</a>
+{% endblock %}
